@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.item {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  background-color: #252422;
+  margin: 10px;
+  overflow: hidden;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 1);
+}
+
+.container img {
+  max-width: 100%;
+  object-fit: cover;
+  /* border-radius: 6px; */
+}
+
+.container h3 {
+  color: #fffcf2;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.container button {
+  background-color: #eb5e28;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.container button:hover {
+  background-color: #e75116;
+  font-weight: bold;
+}
