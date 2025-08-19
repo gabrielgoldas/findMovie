@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Loading from "../Loading/Loading";
 import CardFilm from "../Card/CardMovie";
 import Pagination from "../Pagination/Pagination";
-import { Movie } from "../../utils/types/Film";
+import { Movie } from "../../utils/types/Movie";
 
 function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -31,9 +31,9 @@ function Home() {
             },
           }
         );
-        console.log("Results", res.data.results);
-        console.log("Data: ", res.data);
-        console.log("Total Pages: ", res.data.total_pages);
+        // console.log("Results", res.data.results);
+        // console.log("Data: ", res.data);
+        // console.log("Total Pages: ", res.data.total_pages);
         setMovies(res.data.results);
         setTotalPages(res.data.total_pages);
         setIsLoaging(false);

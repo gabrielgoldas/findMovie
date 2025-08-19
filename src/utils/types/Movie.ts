@@ -3,7 +3,8 @@ export interface Movie {
   adult: boolean;
   overview: string;
   release_date: string;
-  genre_ids: number[];
+  genres: Genre[];
+  production_companies: ProductionCompanies[];
   id: number;
   original_title: string;
   original_language: string;
@@ -14,3 +15,15 @@ export interface Movie {
   video: boolean;
   vote_average: number;
 }
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type ProductionCompanies = {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+};

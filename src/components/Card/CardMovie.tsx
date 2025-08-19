@@ -1,8 +1,9 @@
 import React from "react";
-import { Movie } from "../../utils/types/Film";
+import { Movie } from "../../utils/types/Movie";
 import style from "./CardMovie.module.css";
-import Loading from "../Loading/Loading";
 import NoPoster from "../NoPoster/NoPoster";
+import { useNavigate } from "react-router-dom";
+import { findPoster } from "../../utils/helpers/findPoster";
 
 interface CardFilmProps {
   movies: Movie[];
@@ -11,17 +12,12 @@ interface CardFilmProps {
 const CardFilm = (props: CardFilmProps) => {
   const { movies } = props;
 
-  const findPoster = (poster_path: string) => {
-    if (poster_path === null) {
-      return "/logo.png";
-    }
-    return `https://image.tmdb.org/t/p/w500${poster_path}`;
-  };
+  const navigate = useNavigate();
 
   return (
     <div className={style.container}>
-      {movies.map((movie) => (
-        <div className={style.item}>
+      {movies.map((movie, index) => (
+        <div className={style.item} key={index}>
           {movie.poster_path === null ? (
             <NoPoster title={movie.title} />
           ) : (
@@ -30,7 +26,9 @@ const CardFilm = (props: CardFilmProps) => {
               alt={movie.original_title}
             />
           )}
-          <button>Ver Detalhes</button>
+          <button onClick={() => navigate(`/filme/${movie.id}`)}>
+            Ver Detalhes
+          </button>
         </div>
       ))}
     </div>
