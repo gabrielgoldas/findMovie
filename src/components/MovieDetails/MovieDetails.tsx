@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MovieDetails.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { baseUrlApi, tokenAuthorization } from "../../utils/helpers/url";
-import { Movie } from "../../utils/types/Movie";
+import { Movie, ProductionCompanies } from "../../utils/types/Movie";
 import { findPoster } from "../../utils/helpers/findPoster";
 import Loading from "../Loading/Loading";
 import { formatDateBR, formatRuntime } from "../../utils/helpers/formatter";
@@ -11,8 +11,10 @@ import { formatDateBR, formatRuntime } from "../../utils/helpers/formatter";
 const MovieDetails = () => {
   const { id } = useParams();
 
-  const [isLoading, setIsloading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [movie, setMovie] = useState<Movie>({} as Movie);
+  const [companies, setCompanies] = useState<ProductionCompanies[]>();
+  const navigate = useNavigate();
 
   const findMovieById = async () => {
     if (!id) return;
@@ -22,15 +24,36 @@ const MovieDetails = () => {
           Authorization: `Bearer ${tokenAuthorization()}`,
         },
       });
-      console.log(res.data);
       setMovie(res.data);
-      setIsloading(false);
+      setIsLoading(false);
     } catch (error) {}
   };
 
   useEffect(() => {
     findMovieById();
   }, [id]);
+
+  useEffect(() => {
+    const loadCompanies = async () => {
+      try {
+        const paths = await Promise.all(
+          movie.production_companies.map(async (comp) => {
+            const path = findPoster(comp.logo_path);
+            return { ...comp, logo: path };
+          })
+        );
+        setCompanies(paths);
+        console.log(paths);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (movie.production_companies) {
+      loadCompanies();
+    }
+  }, [movie.production_companies]);
 
   const handleFavorite = () => {
     const raw = localStorage.getItem("favorites");
@@ -39,6 +62,9 @@ const MovieDetails = () => {
     if (id && !favorites.includes(id)) {
       favorites.push(id);
       localStorage.setItem("favorites", JSON.stringify(favorites));
+      alert("Filme favoritado com sucesso!");
+    } else {
+      alert("Esse filme já é um favorito");
     }
   };
 
@@ -53,34 +79,49 @@ const MovieDetails = () => {
             src={findPoster(movie.poster_path)}
             alt={movie.original_title}
           />
+          <button
+            className={`${styles.backBtn} btnDefault`}
+            onClick={() => navigate("/")}
+          >
+            <i className="fa-solid fa-arrow-left"></i>
+          </button>
           <div className={styles.content}>
             <div className={styles.divTitle}>
               <h1>{movie.title}</h1>
               <h3>{movie.tagline}</h3>
             </div>
             <div className={styles.overview}>
-              <h3>Overview</h3>
+              <p className={styles.overviewText}>{movie.overview}</p>
               <div className={styles.infos}>
                 <p>{movie.genres?.map((genre) => genre.name).join(", ")}</p>
                 <p>{formatDateBR(movie.release_date)}</p>
                 <p>{formatRuntime(movie.runtime)}</p>
                 <p>{movie.vote_average}</p>
               </div>
-              <p>{movie.overview}</p>
             </div>
-            <div className={styles.companies}>
-              {movie.production_companies?.map((comp) => {
-                return comp.logo_path ? (
+            <div
+              className={
+                !isLoading ? styles.companies : styles.companiesLoading
+              }
+            >
+              {isLoading ? (
+                <Loading />
+              ) : (
+                companies?.map((comp) => (
                   <img
                     key={comp.id}
-                    src={findPoster(comp.logo_path)}
+                    src={comp.logo}
                     alt={comp.name}
+                    className={styles.companieImg}
                   />
-                ) : null;
-              })}
+                ))
+              )}
             </div>
 
-            <button onClick={handleFavorite} className={styles.btnFavorite}>
+            <button
+              onClick={handleFavorite}
+              className={`${styles.btnFavorite} btnDefault`}
+            >
               Favoritar
             </button>
           </div>

@@ -23,9 +23,10 @@ type Genre = {
   name: string;
 };
 
-type ProductionCompanies = {
+export type ProductionCompanies = {
   id: number;
   logo_path: string;
+  logo: string;
   name: string;
   origin_country: string;
 };

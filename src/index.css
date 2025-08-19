@@ -8,3 +8,17 @@
 body {
   background-color: #403d39;
 }
+
+.btnDefault {
+  background-color: #eb5e28;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.btnDefault:hover {
+  background-color: #e75116;
+  font-weight: bold;
+}

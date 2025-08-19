@@ -23,7 +23,7 @@ function Home() {
     const handleFindFilms = async (currentPage: number) => {
       try {
         const res = await axios.get(
-          `${baseUrlApi()}/upcoming?page=${currentPage}`,
+          `${baseUrlApi()}/popular?page=${currentPage}`,
           {
             headers: {
               Authorization: `Bearer ${tokenAuthorization()}`,
@@ -31,9 +31,6 @@ function Home() {
             },
           }
         );
-        // console.log("Results", res.data.results);
-        // console.log("Data: ", res.data);
-        // console.log("Total Pages: ", res.data.total_pages);
         setMovies(res.data.results);
         setTotalPages(res.data.total_pages);
         setIsLoaging(false);

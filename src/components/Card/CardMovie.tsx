@@ -26,7 +26,10 @@ const CardFilm = (props: CardFilmProps) => {
               alt={movie.original_title}
             />
           )}
-          <button onClick={() => navigate(`/filme/${movie.id}`)}>
+          <button
+            className="btnDefault"
+            onClick={() => navigate(`/filme/${movie.id}`)}
+          >
             Ver Detalhes
           </button>
         </div>

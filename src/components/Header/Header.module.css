@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(37, 36, 34, 0.6); /* azul escuro com transparência */
+  background: rgba(37, 36, 34, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 10px 20px;
@@ -32,7 +32,7 @@ input[type="text"] {
 
 input:focus {
   outline: none;
-  border-color: #eb5e28; /* cor roxa, por exemplo */
+  border-color: #eb5e28;
   box-shadow: 0 0 6px rgba(235, 94, 40, 1);
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
