@@ -1,0 +1,57 @@
+.detailsContainer {
+  display: flex;
+}
+
+.detailsContainer .poster {
+  max-height: 100vh;
+}
+
+.content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.divTitle {
+  text-align: center;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.infos {
+  display: flex;
+  gap: 12px;
+}
+
+.companies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.companies img {
+  width: 100px;
+  padding: 10px;
+}
+
+.btnFavorite {
+  min-width: 20%;
+  background-color: #eb5e28;
+  border-radius: 6px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.btnFavorite:hover {
+  background-color: #e75116;
+  font-weight: bold;
+}

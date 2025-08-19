@@ -3,6 +3,8 @@ export interface Movie {
   adult: boolean;
   overview: string;
   release_date: string;
+  tagline: string;
+  runtime: number;
   genres: Genre[];
   production_companies: ProductionCompanies[];
   id: number;
