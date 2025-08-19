@@ -12,8 +12,8 @@
   padding: 10px 20px;
 }
 
-.title {
-  color: #fffcf2;
+.imgContainer {
+  cursor: pointer;
 }
 
 .searchContainer {

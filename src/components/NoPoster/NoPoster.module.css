@@ -1,0 +1,35 @@
+.noPoster {
+  width: 100%;
+  min-height: 450px;
+  background: linear-gradient(45deg, #ccc5b9, #252422);
+  background-size: 400% 400%;
+  animation: gradientMove 2s linear infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  color: #ccc5b9;
+}
+
+.noPoster h1 {
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 75%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 25%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
