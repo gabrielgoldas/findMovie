@@ -7,6 +7,7 @@ import { Movie, ProductionCompanies } from "../../utils/types/Movie";
 import { findPoster } from "../../utils/helpers/findPoster";
 import Loading from "../Loading/Loading";
 import { formatDateBR, formatRuntime } from "../../utils/helpers/formatter";
+import { Favorite } from "../../utils/types/Favorite";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -57,10 +58,17 @@ const MovieDetails = () => {
 
   const handleFavorite = () => {
     const raw = localStorage.getItem("favorites");
-    const favorites: string[] = raw ? JSON.parse(raw) : [];
+    const favorites: Favorite[] = raw ? JSON.parse(raw) : [];
+    const favoriteAlreadyExists = favorites.some((fav) => fav.id === movie.id);
 
-    if (id && !favorites.includes(id)) {
-      favorites.push(id);
+    if (movie.id && !favoriteAlreadyExists) {
+      const favorite: Favorite = {
+        id: movie.id,
+        poster_path: movie.poster_path,
+        original_title: movie.original_title,
+        title: movie.title,
+      };
+      favorites.push(favorite);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       alert("Filme favoritado com sucesso!");
     } else {
@@ -81,7 +89,7 @@ const MovieDetails = () => {
           />
           <button
             className={`${styles.backBtn} btnDefault`}
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             <i className="fa-solid fa-arrow-left"></i>
           </button>

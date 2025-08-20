@@ -18,7 +18,24 @@
 
 .searchContainer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  gap: 20px;
+}
+
+.searchContainer .favoritesBtn {
+  border: none;
+  background-color: transparent;
+  color: #fffcf2;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 300;
+  transition: all 0.3s ease-in-out;
+}
+
+.searchContainer .favoritesBtn:hover {
+  color: #eb5e28;
+  transform: scale(1.05);
 }
 
 input[type="text"] {

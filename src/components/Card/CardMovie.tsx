@@ -4,12 +4,13 @@ import style from "./CardMovie.module.css";
 import NoPoster from "../NoPoster/NoPoster";
 import { useNavigate } from "react-router-dom";
 import { findPoster } from "../../utils/helpers/findPoster";
+import { Favorite } from "../../utils/types/Favorite";
 
-interface CardFilmProps {
-  movies: Movie[];
+interface CardMovieProps {
+  movies: Movie[] | Favorite[];
 }
 
-const CardFilm = (props: CardFilmProps) => {
+const CardMovie = (props: CardMovieProps) => {
   const { movies } = props;
 
   const navigate = useNavigate();
@@ -38,4 +39,4 @@ const CardFilm = (props: CardFilmProps) => {
   );
 };
 
-export default CardFilm;
+export default CardMovie;

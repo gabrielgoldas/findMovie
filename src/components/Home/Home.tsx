@@ -4,7 +4,7 @@ import React from "react";
 import { baseUrlApi, tokenAuthorization } from "../../utils/helpers/url";
 import Header from "../Header/Header";
 import Loading from "../Loading/Loading";
-import CardFilm from "../Card/CardMovie";
+import CardMovie from "../Card/CardMovie";
 import Pagination from "../Pagination/Pagination";
 import { Movie } from "../../utils/types/Movie";
 
@@ -54,7 +54,7 @@ function Home() {
         <Loading />
       ) : (
         <div>
-          <CardFilm movies={movies} />
+          <CardMovie movies={movies} />
           <Pagination totalPages={totalPages} onPageChange={onPageChange} />
         </div>
       )}
