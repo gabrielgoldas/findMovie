@@ -8,6 +8,10 @@ import { findPoster } from "../../utils/helpers/findPoster";
 import Loading from "../Loading/Loading";
 import { formatDateBR, formatRuntime } from "../../utils/helpers/formatter";
 import { Favorite } from "../../utils/types/Favorite";
+import Alert from "../Alert/Alert";
+import { favoriteExists, getFavorites } from "../../utils/helpers/favorite";
+
+// criar funcão isFavorite
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -15,6 +19,10 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [movie, setMovie] = useState<Movie>({} as Movie);
   const [companies, setCompanies] = useState<ProductionCompanies[]>();
+  const [isFavorite, setIsFavorite] = useState<boolean>(true);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const findMovieById = async () => {
@@ -25,7 +33,14 @@ const MovieDetails = () => {
           Authorization: `Bearer ${tokenAuthorization()}`,
         },
       });
+
       setMovie(res.data);
+
+      const favoriteAlreadyExists = favoriteExists(movie.id);
+      setIsFavorite(favoriteAlreadyExists);
+
+      setIsLoading(false);
+
       setIsLoading(false);
     } catch (error) {}
   };
@@ -44,7 +59,6 @@ const MovieDetails = () => {
           })
         );
         setCompanies(paths);
-        console.log(paths);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -57,9 +71,8 @@ const MovieDetails = () => {
   }, [movie.production_companies]);
 
   const handleFavorite = () => {
-    const raw = localStorage.getItem("favorites");
-    const favorites: Favorite[] = raw ? JSON.parse(raw) : [];
-    const favoriteAlreadyExists = favorites.some((fav) => fav.id === movie.id);
+    const favorites = getFavorites();
+    const favoriteAlreadyExists = favoriteExists(movie.id);
 
     if (movie.id && !favoriteAlreadyExists) {
       const favorite: Favorite = {
@@ -70,14 +83,36 @@ const MovieDetails = () => {
       };
       favorites.push(favorite);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      alert("Filme favoritado com sucesso!");
+      setAlertMessage("Filme favoritado com sucesso!");
+      setShowAlert(true);
+      setIsFavorite(true);
+      console.log(favorites);
+    }
+  };
+
+  const handleRemoveFavorite = () => {
+    const favorites = getFavorites();
+    const updatedFavorites = favorites.filter((fav) => fav.id !== movie.id);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    setIsFavorite(false);
+    console.log(updatedFavorites);
+    setAlertMessage("Filme removido dos Favoritos");
+    setShowAlert(true);
+  };
+
+  const handlefavoriteMessage = () => {
+    if (isFavorite) {
+      return `Remover Favorito`;
     } else {
-      alert("Esse filme já é um favorito");
+      return `Favoritar`;
     }
   };
 
   return (
     <>
+      {showAlert && (
+        <Alert message={alertMessage} onClose={() => setShowAlert(false)} />
+      )}
       {isLoading ? (
         <Loading />
       ) : (
@@ -127,10 +162,10 @@ const MovieDetails = () => {
             </div>
 
             <button
-              onClick={handleFavorite}
+              onClick={isFavorite ? handleRemoveFavorite : handleFavorite}
               className={`${styles.btnFavorite} btnDefault`}
             >
-              Favoritar
+              {handlefavoriteMessage()}
             </button>
           </div>
         </div>
