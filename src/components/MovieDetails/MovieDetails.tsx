@@ -11,8 +11,6 @@ import { Favorite } from "../../utils/types/Favorite";
 import Alert from "../Alert/Alert";
 import { favoriteExists, getFavorites } from "../../utils/helpers/favorite";
 
-// criar funcão isFavorite
-
 const MovieDetails = () => {
   const { id } = useParams();
 
@@ -28,7 +26,7 @@ const MovieDetails = () => {
   const findMovieById = async () => {
     if (!id) return;
     try {
-      const res = await axios.get(`${baseUrlApi()}/${id}`, {
+      const res = await axios.get(`${baseUrlApi()}/movie/${id}`, {
         headers: {
           Authorization: `Bearer ${tokenAuthorization()}`,
         },
