@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   title: string;
   isFavorite: boolean;
+  onSearch?: (query: string, page: number) => void;
 }
 
 const Header = (props: HeaderProps) => {
-  const { title, isFavorite } = props;
+  const { title, isFavorite, onSearch = () => {} } = props;
+
+  const [search, setSearch] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -31,8 +34,16 @@ const Header = (props: HeaderProps) => {
         ) : (
           ""
         )}
-        <input type="text" placeholder="Procure por um filme" />
-        <button className={styles.searchButton}>
+        <input
+          type="text"
+          placeholder="Procure por um filme"
+          onChange={(ev) => setSearch(ev.target.value)}
+          value={search}
+        />
+        <button
+          className={styles.searchButton}
+          onClick={() => onSearch(search, 1)}
+        >
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>

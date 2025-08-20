@@ -30,3 +30,8 @@ export type ProductionCompanies = {
   name: string;
   origin_country: string;
 };
+
+export interface MovieApiResponse {
+  results: Movie[];
+  total_pages: number;
+}

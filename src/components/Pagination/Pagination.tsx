@@ -3,16 +3,15 @@ import styles from "./Pagination.module.css";
 
 interface PaginationProps {
   totalPages: number;
+  currentPage: number;
   onPageChange: (page: number) => void;
 }
 
 const Pagination = (props: PaginationProps) => {
-  const { totalPages, onPageChange } = props;
-  const [currentPage, setCurrentPage] = useState(1);
+  const { totalPages, onPageChange, currentPage } = props;
 
   const handleChangePage = (page: number) => {
     if (page < 1 || page > totalPages) return;
-    setCurrentPage(page);
     onPageChange(page);
   };
 

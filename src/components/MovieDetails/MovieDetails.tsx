@@ -38,9 +38,6 @@ const MovieDetails = () => {
 
       const favoriteAlreadyExists = favoriteExists(movie.id);
       setIsFavorite(favoriteAlreadyExists);
-
-      setIsLoading(false);
-
       setIsLoading(false);
     } catch (error) {}
   };
