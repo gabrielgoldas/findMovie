@@ -13,6 +13,12 @@
 }
 
 .imgContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.imgContainer img {
   cursor: pointer;
 }
 
@@ -20,6 +26,10 @@
   position: relative;
   display: flex;
   gap: 20px;
+}
+
+.imgContainer h1 {
+  color: #fffcf2;
 }
 
 .searchContainer .favoritesBtn {

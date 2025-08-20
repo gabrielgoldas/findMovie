@@ -22,7 +22,7 @@ const FavoriteMovie = () => {
 
   return (
     <>
-      <Header />
+      <Header title="Favoritos" isFavorite={true} />
       <CardMovie movies={favorites} />
     </>
   );

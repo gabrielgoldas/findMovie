@@ -49,7 +49,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header title="Filmes" isFavorite={false} />
       {false ? (
         <Loading />
       ) : (
