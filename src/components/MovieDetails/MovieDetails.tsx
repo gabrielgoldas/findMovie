@@ -33,9 +33,6 @@ const MovieDetails = () => {
       });
 
       setMovie(res.data);
-
-      const favoriteAlreadyExists = favoriteExists(movie.id);
-      setIsFavorite(favoriteAlreadyExists);
       setIsLoading(false);
     } catch (error) {}
   };
@@ -102,6 +99,13 @@ const MovieDetails = () => {
       return `Favoritar`;
     }
   };
+
+  useEffect(() => {
+    if (movie.id) {
+      const favoriteAlreadyExists = favoriteExists(movie.id);
+      setIsFavorite(favoriteAlreadyExists);
+    }
+  }, [movie.id]);
 
   return (
     <>

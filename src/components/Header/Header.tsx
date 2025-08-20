@@ -23,30 +23,31 @@ const Header = (props: HeaderProps) => {
         </a>
         <h1>{title}</h1>
       </div>
-      <div className={styles.searchContainer}>
-        {!isFavorite ? (
+
+      {!isFavorite ? (
+        <div className={styles.searchContainer}>
           <button
             className={styles.favoritesBtn}
             onClick={() => navigate("/favoritos")}
           >
             Favoritos
           </button>
-        ) : (
-          ""
-        )}
-        <input
-          type="text"
-          placeholder="Procure por um filme"
-          onChange={(ev) => setSearch(ev.target.value)}
-          value={search}
-        />
-        <button
-          className={styles.searchButton}
-          onClick={() => onSearch(search, 1)}
-        >
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </div>
+          <input
+            type="text"
+            placeholder="Procure por um filme"
+            onChange={(ev) => setSearch(ev.target.value)}
+            value={search}
+          />
+          <button
+            className={styles.searchButton}
+            onClick={() => onSearch(search, 1)}
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </header>
   );
 };
