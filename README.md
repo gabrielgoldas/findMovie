@@ -1,12 +1,29 @@
-# React + Vite
+# 🎬 Find Your Film
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Find Your Film** é uma aplicação web desenvolvida com React e TypeScript que permite aos usuários pesquisar filmes, visualizar detalhes, salvar favoritos e navegar por páginas de resultados. Tudo isso com uma interface responsiva e uma experiência fluida graças ao tratamento de erros e carregamento.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 **Pesquisa de Filmes**: Busque por títulos de filmes usando a API externa.
+- 📄 **Paginação**: Navegue entre páginas de resultados de forma intuitiva.
+- ⭐ **Favoritar Filmes**: Salve e remova filmes favoritos com persistência via `localStorage`.
+- 📘 **Página de Detalhes**: Veja informações completas sobre cada filme.
+- ⚠️ **Tratamento de Erros e Loading**: Feedback visual para carregamento e falhas na requisição.
+- 📱 **Responsividade**: Interface adaptada para diferentes tamanhos de tela.
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Axios](https://axios-http.com/)
+- [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- [CSS Modules](https://github.com/css-modules/css-modules)
+
+## 📦 Instalação
+
+```bash
+git clone https://github.com/seu-usuario/find-your-film.git
+cd find-your-film
+npm install
+npm run dev
+```
