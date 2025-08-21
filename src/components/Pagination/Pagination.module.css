@@ -6,22 +6,16 @@
 }
 
 .btn {
-  background-color: #eb5e28;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: none;
-  border-radius: 3px;
+  min-width: 30px; /* Define a largura do botão */
+  padding: 4px 8px;
+  border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
-  transition: all 0.3s ease-in-out;
 }
 
-.btn:hover {
-  background-color: #f14c0a;
-  font-weight: bold;
-}
-
-.btn:focus {
-  box-shadow: none;
+.btnTruncate {
+  white-space: nowrap; /* Impede que o texto quebre linha */
+  overflow: hidden; /* Esconde o texto que ultrapassa a largura */
+  text-overflow: ellipsis;
 }
 
 .active {

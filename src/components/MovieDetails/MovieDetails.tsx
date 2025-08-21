@@ -128,17 +128,25 @@ const MovieDetails = () => {
             <i className="fa-solid fa-arrow-left"></i>
           </button>
           <div className={styles.content}>
-            <div className={styles.divTitle}>
+            <div className={styles.titleContainer}>
               <h1>{movie.title}</h1>
               <h3>{movie.tagline}</h3>
             </div>
-            <div className={styles.overview}>
+            <div className={styles.overviewContainer}>
               <p className={styles.overviewText}>{movie.overview}</p>
               <div className={styles.infos}>
-                <p>{movie.genres?.map((genre) => genre.name).join(", ")}</p>
+                <p className={styles.genres}>
+                  {movie.genres?.map((genre) => genre.name).join(", ")}
+                </p>
                 <p>{formatDateBR(movie.release_date)}</p>
                 <p>{formatRuntime(movie.runtime)}</p>
-                <p>{movie.vote_average}</p>
+                <p>
+                  <i
+                    className="fa-solid fa-star"
+                    style={{ color: "#eb5e28" }}
+                  ></i>
+                  {movie.vote_average.toFixed(1)}
+                </p>
               </div>
             </div>
             <div

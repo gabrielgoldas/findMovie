@@ -1,6 +1,6 @@
 import React from "react";
 import { Movie } from "../../utils/types/Movie";
-import style from "./CardMovie.module.css";
+import styles from "./CardMovie.module.css";
 import NoPoster from "../NoPoster/NoPoster";
 import { useNavigate } from "react-router-dom";
 import { findPoster } from "../../utils/helpers/findPoster";
@@ -8,17 +8,28 @@ import { Favorite } from "../../utils/types/Favorite";
 
 interface CardMovieProps {
   movies: Movie[] | Favorite[];
+  isFavorite: boolean;
 }
 
 const CardMovie = (props: CardMovieProps) => {
-  const { movies } = props;
+  const { movies, isFavorite } = props;
 
   const navigate = useNavigate();
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
+      {isFavorite ? (
+        <button
+          className={`${styles.backBtn} btnDefault`}
+          onClick={() => navigate(-1)}
+        >
+          <i className="fa-solid fa-arrow-left"></i>
+        </button>
+      ) : (
+        ""
+      )}
       {movies.map((movie, index) => (
-        <div className={style.item} key={index}>
+        <div className={styles.item} key={index}>
           {movie.poster_path === null ? (
             <NoPoster title={movie.title} />
           ) : (

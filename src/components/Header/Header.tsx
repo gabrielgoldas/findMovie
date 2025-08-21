@@ -16,7 +16,7 @@ const Header = (props: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isFavorite && styles.headerNone}`}>
       <div className={styles.imgContainer}>
         <a href="/">
           <img src="/logo.png" alt="Logo" />
@@ -34,7 +34,7 @@ const Header = (props: HeaderProps) => {
           </button>
           <input
             type="text"
-            placeholder="Procure por um filme"
+            placeholder="Procurar um filme"
             onChange={(ev) => setSearch(ev.target.value)}
             value={search}
           />

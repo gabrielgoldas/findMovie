@@ -42,7 +42,7 @@ const Pagination = (props: PaginationProps) => {
     <>
       <div className={styles.containerPagination}>
         <button
-          className={`${styles.directionBtn} ${styles.btn}`}
+          className={`${styles.btn} btnDefault`}
           onClick={() => handleChangePage(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -52,9 +52,9 @@ const Pagination = (props: PaginationProps) => {
           return (
             <button
               key={index}
-              className={`${styles.buttonPage} ${styles.btn} ${
+              className={`${styles.btn} ${styles.btnTruncate} ${
                 page === currentPage ? styles.active : ""
-              }`}
+              } btnDefault`}
               onClick={() => typeof page === "number" && handleChangePage(page)}
               disabled={typeof page !== "number"}
             >
@@ -63,7 +63,7 @@ const Pagination = (props: PaginationProps) => {
           );
         })}
         <button
-          className={`${styles.directionBtn} ${styles.btn}`}
+          className={`${styles.btn} btnDefault`}
           onClick={() => handleChangePage(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
